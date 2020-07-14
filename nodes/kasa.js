@@ -318,6 +318,12 @@ module.exports = function (RED) {
         case 'eraseStats':
           promise = device.emeter.eraseStats()
           break
+        case 'getMeterCurrentMonthDayStats':
+          promise = device.emeter.get_daystat(today.year,today.month)
+          break
+        case 'getMeterPreviousMonthDayStats':
+          promise = device.emeter.get_daystat(today.year-1,(today.month-1)%12)
+          break
         default:
           return node.error(`Invalid input: ${cmd}`)
       }
